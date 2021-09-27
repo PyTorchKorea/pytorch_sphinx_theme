@@ -262,6 +262,21 @@ if (downloadNote.length >= 1) {
     $(".pytorch-call-to-action-links").hide();
 }
 
+// this code adds link to the original tutorial document from pytorch.org
+$(document).ready(function() {
+    // only work for tutorial html pages
+    if (document.URL.includes(".html")) {
+        var orgUrl    = ['https:', '', 'pytorch.org', 'tutorials'].concat(document.URL.split("/").slice(3)).join('/');
+        var orgLink   = '<a style="font-size:0.5em;padding-left:0.375em;" target="_blank" href="'+ orgUrl +'">[원문 보기]</a>';
+
+        // add pytorch.org tutorial link inside h1 tag
+        $("div.rst-content h1 a").before(orgLink);
+
+        // modify pytorch.org tutorial link at bottom
+        $("#orgTutorialLink").attr("href", orgUrl);
+    }
+});
+
 //This code handles the Expand/Hide toggle for the Docs/Tutorials left nav items
 
 $(document).ready(function() {
