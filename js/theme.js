@@ -250,10 +250,10 @@ if (downloadNote.length >= 1) {
     var tutorialUrlArray = $("#tutorial-type").text().split('/');
         tutorialUrlArray[0] = tutorialUrlArray[0] + "_source"
 
-    var githubLink = "https://github.com/9bow/PyTorch-tutorials-kr/blob/master/" + tutorialUrlArray.join("/") + ".py",
+    var githubLink = "https://github.com/PyTorchKorea/tutorials-kr/blob/master/" + tutorialUrlArray.join("/") + ".py",
         notebookLink = $(".reference.download")[1].href,
         notebookDownloadPath = notebookLink.split('_downloads')[1],
-        colabLink = "https://colab.research.google.com/github/9bow/PyTorch-Tutorials-kr/blob/master/docs/_downloads" + notebookDownloadPath;
+        colabLink = "https://colab.research.google.com/github/PyTorchKorea/tutorials-kr/blob/master/docs/_downloads" + notebookDownloadPath;
 
     $("#google-colab-link").wrap("<a href=" + colabLink + " data-behavior='call-to-action-event' data-response='Run in Google Colab' target='_blank'/>");
     $("#download-notebook-link").wrap("<a href=" + notebookLink + " data-behavior='call-to-action-event' data-response='Download Notebook'/>");
