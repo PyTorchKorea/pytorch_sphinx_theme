@@ -22,5 +22,8 @@
     "grunt-postcss": "^0.9.0",
     "matchdep": "~1.0.1",
     "popper.js": "^1.14.3"
+  },
+  "dependencies": {
+    "yarn": "^1.22.18"
   }
 }
