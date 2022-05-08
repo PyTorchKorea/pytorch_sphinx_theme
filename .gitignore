@@ -1,6 +1,5 @@
 *build/
 *.DS_Store
-*.sass-cache
 *.map
 node_modules
 npm-debug.log
@@ -9,4 +8,3 @@ package-lock.json
 __pycache__
 dist/
 *.egg-info/
-scss/vendor/*

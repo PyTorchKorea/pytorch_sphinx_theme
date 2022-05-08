@@ -9,6 +9,7 @@ module.exports = function(grunt) {
     case "docs":
       PROJECT_DIR = envJSON.DOCS_DIR;
       break;
+    case "tutorial":
     case "tutorials":
       PROJECT_DIR = envJSON.TUTORIALS_DIR;
       break;
@@ -69,14 +70,6 @@ module.exports = function(grunt) {
       vendor: {
         files: [
           {
-              expand: true,
-              cwd: 'node_modules/bootstrap/scss/',
-              src: "**/*",
-              dest: 'scss/vendor/bootstrap',
-              filter: 'isFile'
-          },
-
-          {
             expand: true,
             flatten: true,
             src: [
@@ -88,48 +81,6 @@ module.exports = function(grunt) {
             filter: 'isFile'
           }
         ]
-      }
-    },
-
-    sass: {
-      dev: {
-        options: {
-          style: 'expanded'
-        },
-        files: [{
-          expand: true,
-          cwd: 'scss',
-          src: ['*.scss'],
-          dest: 'pytorch_sphinx_theme/static/css',
-          ext: '.css'
-        }]
-      },
-      build: {
-        options: {
-          style: 'compressed'
-        },
-        files: [{
-          expand: true,
-          cwd: 'scss',
-          src: ['*.scss'],
-          dest: 'pytorch_sphinx_theme/static/css',
-          ext: '.css'
-        }]
-      }
-    },
-
-    postcss: {
-      options: {
-        map: true,
-        processors: [
-          require("autoprefixer")({browsers: ["last 2 versions"]}),
-        ]
-      },
-
-      dist: {
-        files: {
-          "pytorch_sphinx_theme/static/css/theme.css": "pytorch_sphinx_theme/static/css/theme.css"
-        }
       }
     },
 
@@ -177,23 +128,17 @@ module.exports = function(grunt) {
     },
     exec: {
       build_sphinx: {
-        cmd: 'sphinx-build -D plot_gallery=0 ' + PROJECT_DIR + ' docs/build'
+        cmd: 'sphinx-build -D plot_gallery=0 ' + PROJECT_DIR + ' -b html ./docs/build'
       }
     },
     clean: {
       build: ["docs/build"],
       fonts: ["pytorch_sphinx_theme/static/fonts"],
       images: ["pytorch_sphinx_theme/static/images"],
-      css: ["pytorch_sphinx_theme/static/css"],
       js: ["pytorch_sphinx_theme/static/js/*", "!pytorch_sphinx_theme/static/js/modernizr.min.js"]
     },
 
     watch: {
-      /* Compile scss changes into theme directory */
-      sass: {
-        files: ['scss/**/*.scss'],
-        tasks: ['sass:dev', 'postcss:dist']
-      },
       /* Changes in theme dir rebuild sphinx */
       sphinx: {
         files: ['pytorch_sphinx_theme/**/*', 'README.rst', 'docs/**/*.rst', 'docs/**/*.py'],
@@ -216,12 +161,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-exec');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-open');
   grunt.loadNpmTasks('grunt-browserify');
 
-  grunt.registerTask('default', ['clean','copy:fonts', 'copy:images', 'copy:vendor', 'sass:dev', 'postcss:dist', 'browserify:dev','exec:build_sphinx','connect','open','watch']);
-  grunt.registerTask('build', ['clean','copy:fonts', 'copy:images', 'copy:vendor', 'sass:build', 'postcss:dist', 'browserify:build', 'uglify']);
+  grunt.registerTask('default', ['clean','copy:fonts', 'copy:images', 'copy:vendor', 'browserify:dev','exec:build_sphinx','connect','open','watch']);
+  grunt.registerTask('build', ['clean','copy:fonts', 'copy:images', 'copy:vendor', 'browserify:build', 'uglify']);
 }
