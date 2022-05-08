@@ -9975,7 +9975,7 @@ pre {
   color: #ffffff;
 }
 .site-footer a {
-  font-family: "Nanum Gothic" !important;
+  font-family: "Nanum Gothic";
 }
 .site-footer a:link,
 .site-footer a:visited {
@@ -9993,12 +9993,12 @@ pre {
   display: flex;
 }
 .site-footer .trademark-disclaimer li {
-  font-family: "Nanum Gothic" !important;
+  font-family: "Nanum Gothic";
   font-size: 0.75rem;
   line-height: 0.875rem;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
-  display: inline-flex;
+  /* display: inline-flex; */
   color: white;
 }
 
@@ -10018,12 +10018,12 @@ pre {
   }
 }
 .docs-tutorials-resources p {
-  font-family: "Nanum Gothic" !important;
+  font-family: "Nanum Gothic";
   font-size: 1rem;
   color: #929292;
 }
 .docs-tutorials-resources h2 {
-  font-family: "Nanum Gothic" !important;
+  font-family: "Nanum Gothic";
   font-size: 1.3125rem;
   letter-spacing: -0.25px;
   text-transform: none;
@@ -10050,7 +10050,7 @@ pre {
   background-image: url("../images/chevron-right-white.svg");
 }
 .docs-tutorials-resources p {
-  font-family: "Nanum Gothic" !important;
+  font-family: "Nanum Gothic";
   font-size: 0.875rem;
   line-height: 1.5rem;
   letter-spacing: 0.22px;
@@ -10063,7 +10063,7 @@ pre {
   }
 }
 .docs-tutorials-resources a {
-  font-family: "Nanum Gothic" !important;
+  font-family: "Nanum Gothic";
   font-size: 1rem;
   color: #e44c2c;
 }
