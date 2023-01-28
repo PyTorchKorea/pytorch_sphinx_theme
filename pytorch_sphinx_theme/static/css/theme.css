@@ -10373,9 +10373,10 @@ ul.pytorch-breadcrumbs a {
   top: 0;
 }
 
-.tutorials-header .header-logo {
+/* let refer global header-logo class instead */
+/* .tutorials-header .header-logo {
   background-image: url("../images/logo-ko.svg");
-}
+} */
 .tutorials-header .main-menu ul li a {
   color: #262626;
 }
