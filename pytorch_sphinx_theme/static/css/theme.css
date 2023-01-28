@@ -9739,22 +9739,22 @@ pre {
 }
 
 .header-logo {
-  height: 52px;
-  width: 450px;
+  height: 40px;
+  width: 2000px;
   background-image: url("../images/logo-ko.svg");
   background-repeat: no-repeat;
-  background-size: 450px 52px;
+  background-size: 200px 52px;
   display: block;
   float: left;
   z-index: 10;
 }
 @media screen and (min-width: 1100px) {
   .header-logo {
-    background-size: 450px 52px;
+    background-size: 200px 52px;
     position: absolute;
     height: 52px;
-    width: 450px;
-    top: -5px;
+    width: 200px;
+    top: -10px;
     float: none;
   }
 }
@@ -10085,10 +10085,10 @@ pre {
 }
 
 .footer-logo {
-  background-image: url("../images/logo-ko-dark.svg");
+  background-image: url("../logos/logo-kr-square.svg");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 450 52px;
+  background-size: 450px 52px;
   display: block;
   height: 52px;
   width: 450px;
@@ -10096,9 +10096,9 @@ pre {
 }
 @media screen and (min-width: 768px) {
   .footer-logo {
-    background-size: 450px 52px;
-    height: 52px;
-    width: 450px;
+    background-size: 100px 100px;
+    height: 130px;
+    width: 100px;
     margin-bottom: 0;
   }
 }
