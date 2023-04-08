@@ -10397,7 +10397,7 @@ ul.pytorch-breadcrumbs a {
   font-size: 1.125rem;
 }
 .rst-content footer .rating-container .rating-prompt, .rst-content footer .rating-container .was-helpful-thank-you,
-.rst-content footer .community-container .community-prompt {
+.rst-content footer .community-container .community-prompt, .rst-content footer .community-container .community-link {
   padding: 0.625rem 1.25rem 0.625rem 1.25rem;
 }
 .rst-content footer .rating-container .was-helpful-thank-you {
