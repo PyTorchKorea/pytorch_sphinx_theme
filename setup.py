@@ -1,10 +1,14 @@
 from setuptools import setup
 from io import open
-from pytorch_sphinx_theme import __version__
+import re
+
+def get_version():
+    with open('pytorch_sphinx_theme/__init__.py', 'r') as f:
+        return re.search(r"__version__ = '([^']+)'", f.read()).group(1)
 
 setup(
     name = 'pytorch_sphinx_theme',
-    version =__version__,
+    version=get_version(),
     author = 'Shift Lab',
     author_email= 'info@shiftlabny.com',
     url="https://github.com/pytorchkorea/pytorch_sphinx_theme",
