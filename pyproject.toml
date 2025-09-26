@@ -35,14 +35,15 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/pytorchkorea/pytorch_sphinx_theme"
-Repository = "https://github.com/pytorchkorea/pytorch_sphinx_theme"
-Issues = "https://github.com/pytorchkorea/pytorch_sphinx_theme/issues"
+Homepage = "https://github.com/pytorch/pytorch_sphinx_theme"
+Repository = "https://github.com/pytorch/pytorch_sphinx_theme"
+Issues = "https://github.com/pytorch/pytorch_sphinx_theme/issues"
 
 [project.entry-points."sphinx.html_themes"]
 pytorch_sphinx_theme = "pytorch_sphinx_theme"
 
-
+[project.entry-points."sphinx.builders"]
+pytorch_sphinx_theme = "pytorch_sphinx_theme"
 
 [tool.setuptools.packages.find]
 include = ["pytorch_sphinx_theme*"]
@@ -53,9 +54,7 @@ pytorch_sphinx_theme = [
     "*.html",
     "static/css/*.css",
     "static/js/*.js",
-    "static/js/vendor/*.js",
-    "static/fonts/FreightSans/*",
-    "static/fonts/IBMPlexMono/*",
+    "static/fonts/*.*",
     "static/images/*.*",
     "theme_variables.jinja"
 ]

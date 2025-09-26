@@ -1,18 +1,19 @@
 from setuptools import setup
-from io import open
-import re
+import os
+import sys
 
-def get_version():
-    with open('pytorch_sphinx_theme/__init__.py', 'r') as f:
-        return re.search(r"__version__ = '([^']+)'", f.read()).group(1)
+REPO_ROOT = os.path.dirname(__file__)
+sys.path.insert(0, REPO_ROOT)
+from pytorch_sphinx_theme import __version__
+sys.path.pop(0)
 
 setup(
     name = 'pytorch_sphinx_theme',
-    version=get_version(),
+    version =__version__,
     author = 'Shift Lab',
     author_email= 'info@shiftlabny.com',
-    url="https://github.com/pytorchkorea/pytorch_sphinx_theme",
-    docs_url="https://github.com/pytorchkorea/pytorch_sphinx_theme",
+    url="https://github.com/PyTorchKorea/pytorch_sphinx_theme",
+    docs_url="https://github.com/PyTorchKorea/pytorch_sphinx_theme",
     description='PyTorch Sphinx Theme',
     py_modules = ['pytorch_sphinx_theme'],
     packages = ['pytorch_sphinx_theme'],

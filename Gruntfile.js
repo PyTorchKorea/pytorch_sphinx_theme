@@ -9,7 +9,6 @@ module.exports = function(grunt) {
     case "docs":
       PROJECT_DIR = envJSON.DOCS_DIR;
       break;
-    case "tutorial":
     case "tutorials":
       PROJECT_DIR = envJSON.TUTORIALS_DIR;
       break;
