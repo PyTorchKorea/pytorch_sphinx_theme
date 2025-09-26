@@ -24,9 +24,7 @@ setup(
         '*.html',
         'static/css/*.css',
         'static/js/*.js',
-        'static/js/vendor/*.js',
-        'static/fonts/FreightSans/*',
-        'static/fonts/IBMPlexMono/*',
+        'static/fonts/*.*',
         'static/images/*.*',
         'theme_variables.jinja'
     ]},
