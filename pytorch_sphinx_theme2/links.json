@@ -1,0 +1,11 @@
+{
+  "library_links": [
+    {"url": "https://docs.pytorch.org/ao", "name": "torchao"},
+    {"url": "https://docs.pytorch.org/torchrec", "name": "torchrec"},
+    {"url": "https://docs.pytorch.org/torchft", "name": "torchft"},
+    {"url": "https://docs.pytorch.org/torchcodec", "name": "TorchCodec"},
+    {"url": "https://docs.pytorch.org/vision", "name": "torchvision"},
+    {"url": "https://docs.pytorch.org/executorch", "name": "ExecuTorch"},
+    {"url": "https://docs.pytorch.org/xla", "name": "PyTorch on XLA Devices"}
+  ]
+}

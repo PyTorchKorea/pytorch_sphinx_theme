@@ -1,0 +1,294 @@
+{% if pytorch_project in ['docs', 'tutorials'] %}
+<div class="search-container-wrapper">
+  <div id="sphinx-search" class="search-container">
+    {% include "search-field.html" %}
+  </div>
+
+  <div id="google-search" class="search-container" style="display:none;">
+    <div class="gcse-search-wrapper">
+      <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+      <div class="gcse-search"></div>
+    </div>
+  </div>
+
+  <div class="search-toggle-container" data-bs-title="Google Search Off" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <div class="search-toggle-inner">
+      <label class="switch">
+        <input type="checkbox" id="search-toggle">
+        <span class="slider round"></span>
+      </label>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+  // Define the search callback
+  const myWebSearchStartingCallback = (gname, query) => {
+    if (typeof dataLayer !== 'undefined' && query) {
+      window.dataLayer = window.dataLayer || [];
+      dataLayer.push({
+        'event': 'google_search',
+        'search_term': query,
+        'event_category': 'Search',
+        'event_label': 'Google Search'
+      });
+    }
+    return '';
+  };
+
+  // Set up the GCSE search callbacks
+  window.__gcse || (window.__gcse = {});
+  window.__gcse.searchCallbacks = {
+    web: { starting: myWebSearchStartingCallback }
+  };
+
+  if (window.location.pathname.includes('/search.html')) {
+    document.body.classList.add('search-page');
+  }
+
+  // Function to reinitialize Google CSE
+  function reinitializeGoogleSearch() {
+    if (window.__gcse && window.__gcse.initializationCallback) {
+      window.__gcse.initializationCallback();
+    }
+  }
+
+  // Function to handle search toggle
+  function handleSearchToggle(toggle, sphinxSearch, googleSearch) {
+    if (!toggle || !sphinxSearch || !googleSearch) return;
+
+    // Check if the URL contains /stable/ or /tutorials/
+    const currentUrl = window.location.href;
+    // TODO: We've had reports that the google programmable search is returning stale documentation,
+    //       Simple reproduction is to turn google search on and search for multinomial which will
+    //       result in returning 1.8.1 documentation.
+    //       We should turn this back on when we resolve that bug.
+    const shouldDefaultToGoogle = false;
+    const savedPreference = localStorage.getItem('searchPreference');
+
+    // Set initial state
+    if (savedPreference === 'google' || (savedPreference === null && shouldDefaultToGoogle)) {
+      toggle.checked = true;
+      sphinxSearch.style.display = 'none';
+      googleSearch.style.display = 'block';
+      if (savedPreference === null) {
+        localStorage.setItem('searchPreference', 'google');
+      }
+      reinitializeGoogleSearch();
+    } else {
+      toggle.checked = false;
+      sphinxSearch.style.display = 'block';
+      googleSearch.style.display = 'none';
+    }
+
+    // Update tooltip
+    updateTooltip(toggle.checked);
+
+    // Skip if already initialized
+    if (toggle.hasAttribute('data-initialized')) return;
+    toggle.setAttribute('data-initialized', 'true');
+
+    toggle.addEventListener('change', function() {
+      if (this.checked) {
+        sphinxSearch.style.display = 'none';
+        googleSearch.style.display = 'block';
+        localStorage.setItem('searchPreference', 'google');
+        reinitializeGoogleSearch();
+        trackSearchEngineSwitch('Google');
+      } else {
+        sphinxSearch.style.display = 'block';
+        googleSearch.style.display = 'none';
+        localStorage.setItem('searchPreference', 'sphinx');
+        trackSearchEngineSwitch('Sphinx');
+      }
+
+      updateTooltip(this.checked);
+      updateMobileSearch();
+    });
+  }
+
+  // Update tooltip based on toggle state
+  function updateTooltip(isChecked) {
+    const tooltipElement = document.querySelector('.search-toggle-container');
+    if (!tooltipElement) return;
+
+    tooltipElement.setAttribute('data-bs-title', isChecked ? 'Google Search On' : 'Google Search Off');
+
+    if (bootstrap && bootstrap.Tooltip) {
+      const tooltipInstance = bootstrap.Tooltip.getInstance(tooltipElement);
+      if (tooltipInstance) tooltipInstance.dispose();
+      new bootstrap.Tooltip(tooltipElement);
+    }
+  }
+
+  // Track search engine switch
+  function trackSearchEngineSwitch(engine) {
+    if (typeof dataLayer !== 'undefined') {
+      window.dataLayer = window.dataLayer || [];
+      dataLayer.push({
+        'event': 'search_engine_switch',
+        'event_category': 'Search',
+        'event_label': engine
+      });
+    }
+  }
+
+  // Function to update mobile search based on current toggle state
+  function updateMobileSearch() {
+    const toggle = document.getElementById('search-toggle');
+    if (!toggle) return;
+
+    const mobileSearchContainer = document.querySelector('.sidebar-header-items__end .navbar-item .search-container-wrapper');
+    if (!mobileSearchContainer) return;
+
+    const mobileSphinxSearch = mobileSearchContainer.querySelector('#sphinx-search');
+    const mobileGoogleSearch = mobileSearchContainer.querySelector('#google-search');
+
+    if (mobileSphinxSearch && mobileGoogleSearch) {
+      mobileSphinxSearch.style.display = toggle.checked ? 'none' : 'block';
+      mobileGoogleSearch.style.display = toggle.checked ? 'block' : 'none';
+
+      if (toggle.checked) {
+        reinitializeGoogleSearch();
+      }
+    }
+  }
+
+  // Initialize desktop search toggle
+  const toggle = document.getElementById('search-toggle');
+  const sphinxSearch = document.getElementById('sphinx-search');
+  const googleSearch = document.getElementById('google-search');
+  handleSearchToggle(toggle, sphinxSearch, googleSearch);
+
+  // Set placeholder text for Google search input
+  const observer = new MutationObserver(function() {
+    document.querySelectorAll('.gsc-input input').forEach(input => {
+      if (input && !input.hasAttribute('data-placeholder-set')) {
+        input.setAttribute('placeholder', 'Search the docs ...');
+        input.setAttribute('data-placeholder-set', 'true');
+      }
+    });
+  });
+
+  observer.observe(document.body, { childList: true, subtree: true });
+
+  // Fix for scroll jump issue - improved approach
+  function setupSearchInputHandlers(input) {
+    if (input.hasAttribute('data-scroll-fixed')) return;
+    input.setAttribute('data-scroll-fixed', 'true');
+
+    let lastScrollPosition = 0;
+    let isTyping = false;
+    let scrollTimeout;
+
+    // Save position before typing starts
+    input.addEventListener('keydown', () => {
+      lastScrollPosition = window.scrollY;
+      isTyping = true;
+
+      // Reset typing state after a short delay
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        isTyping = false;
+      }, 100);
+    });
+
+    // Only maintain scroll position during typing
+    function maintainScroll() {
+      if (document.activeElement === input && isTyping) {
+        window.scrollTo(0, lastScrollPosition);
+        requestAnimationFrame(maintainScroll);
+      }
+    }
+
+    input.addEventListener('focus', () => {
+      // Just store initial position but don't force it
+      lastScrollPosition = window.scrollY;
+    });
+
+    input.addEventListener('input', () => {
+      isTyping = true;
+      window.scrollTo(0, lastScrollPosition);
+
+      // Reset typing state after a short delay
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        isTyping = false;
+      }, 100);
+
+      requestAnimationFrame(maintainScroll);
+    });
+  }
+
+  // Apply to all search inputs and observe for new ones
+  function applyToSearchInputs() {
+    document.querySelectorAll('.search-container input, .gsc-input input').forEach(setupSearchInputHandlers);
+  }
+
+  applyToSearchInputs();
+
+  const searchObserver = new MutationObserver(applyToSearchInputs);
+  searchObserver.observe(document.body, { childList: true, subtree: true });
+
+  // Watch for mobile menu creation
+  const mobileMenuObserver = new MutationObserver(function(mutations) {
+    for (const mutation of mutations) {
+      if (!mutation.addedNodes.length) continue;
+
+      // Style mobile search inputs
+      document.querySelectorAll('.sidebar-header-items__end .navbar-item .search-container-wrapper .gsc-input input').forEach(input => {
+        if (input) {
+          input.setAttribute('placeholder', 'Search the docs ...');
+          input.style.paddingLeft = '36px';
+        }
+      });
+
+      // Check for mobile search container
+      const mobileSearchContainer = document.querySelector('.sidebar-header-items__end .navbar-item .search-container-wrapper');
+      if (!mobileSearchContainer) continue;
+
+      const mobileToggle = mobileSearchContainer.querySelector('#search-toggle');
+      if (mobileToggle && toggle) {
+        // Sync mobile toggle with desktop toggle
+        mobileToggle.checked = toggle.checked;
+        updateMobileSearch();
+
+        // Add event listener to mobile toggle if not already added
+        if (!mobileToggle.hasAttribute('data-initialized')) {
+          mobileToggle.setAttribute('data-initialized', 'true');
+          mobileToggle.addEventListener('change', function() {
+            // Sync desktop toggle with mobile toggle
+            toggle.checked = this.checked;
+            // Trigger change event on desktop toggle to update both
+            toggle.dispatchEvent(new Event('change'));
+          });
+        }
+      }
+    }
+  });
+
+  mobileMenuObserver.observe(document.body, { childList: true, subtree: true });
+
+  // Ensure Google CSE is properly loaded
+  if (window.__gcse) {
+    window.__gcse.callback = function() {
+      // This will run after Google CSE is fully loaded
+      if (toggle && toggle.checked) {
+        reinitializeGoogleSearch();
+      }
+    };
+  } else {
+    window.__gcse = {
+      callback: function() {
+        if (toggle && toggle.checked) {
+          reinitializeGoogleSearch();
+        }
+      }
+    };
+  }
+});
+</script>
+{% else %}
+  {% include "search-field.html" %}
+{% endif %}
