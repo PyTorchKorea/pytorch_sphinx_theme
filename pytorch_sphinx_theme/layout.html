@@ -41,18 +41,7 @@
 
   {% endif %}
 
-  {%- if style %}
   <link rel="stylesheet" href="{{ pathto('_static/' + style, 1) }}" type="text/css" />
-  {%- endif %}
-  <link rel="stylesheet" href="{{ pathto('_static/css/theme.css', 1) }}" type="text/css" />
-  <link rel="stylesheet" href="{{ pathto('_static/copybutton.css', 1) }}" type="text/css" />
-  <link rel="stylesheet" href="{{ pathto('_static/sg_gallery.css', 1) }}" type="text/css" />
-  <link rel="stylesheet" href="{{ pathto('_static/sg_gallery-binder.css', 1) }}" type="text/css" />
-  <link rel="stylesheet" href="{{ pathto('_static/sg_gallery-dataframe.css', 1) }}" type="text/css" />
-  <link rel="stylesheet" href="{{ pathto('_static/sg_gallery-rendered-html.css', 1) }}" type="text/css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" type="text/css" />
-  <link rel="stylesheet" href="{{ pathto('_static/katex-math.css', 1) }}" type="text/css" />
-  <link rel="stylesheet" href="{{ pathto('_static/sphinx-design.min.css', 1) }}" type="text/css" />
   <!-- <link rel="stylesheet" href="{{ pathto('_static/pygments.css', 1) }}" type="text/css" /> -->
   {%- for css in css_files %}
     {%- if css|attr("rel") %}
@@ -114,94 +103,97 @@
           <li class="main-menu-item">
           <div id="resourcesDropdownButton" data-toggle="resources-dropdown" class="resources-dropdown">
               <a class="with-down-arrow">
-                시작하기
+                Learn
               </a>
               <div class="resources-dropdown-menu">
                 <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['get_started'] }}">
-                  <span class=dropdown-title>시작하기</span>
-                  <p>PyTorch를 로컬에서 실행하거나 지원되는 클라우드 플랫폼에서 빠르게 시작하기</p>
+                  <span class=dropdown-title>Get Started</span>
+                  <p>Run PyTorch locally or get started quickly with one of the supported cloud platforms</p>
                 </a>
-                <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['previous_pytorch_versions'] }}">
-                  <span class="dropdown-title">이전 버전</span>
-                  <p>이전 PyTorch 버전의 다운로드 및 설치 가이드</p>
-                </a>
-              </div>
-            </div>
-          </li>
-
-          <li>
-          <div id="resourcesDropdownButton" data-toggle="resources-dropdown" class="resources-dropdown">
-              <a class="with-down-arrow">
-                블로그
-              </a>
-              <div class="resources-dropdown-menu">
-                <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['blog'] }}">
-                  <span class="dropdown-title">PyTorch 블로그</span>
-                  <p>PyTorch의 최신 뉴스, 업데이트 및 기술 블로그</p>
-                </a>
-                <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['community_blog'] }}">
-                  <span class=dropdown-title>커뮤니티 블로그</span>
-                  <p>PyTorch 커뮤니티의 기술 블로그와 튜토리얼</p>
-                </a>
-                <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['videos'] }}">
-                  <span class=dropdown-title>동영상</span>
-                  <p>PyTorch 동영상 튜토리얼과 웨비나</p>
-                </a>
-                <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['community-stories'] }}">
-                  <span class="dropdown-title">커뮤니티 스토리</span>
-                  <p>PyTorch 커뮤니티 사용자들의 성공 스토리</p>
-                </a>
-                <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['events'] }}">
-                  <span class="dropdown-title">이벤트</span>
-                  <p>PyTorch 관련 컨퍼런스, 밋업 및 이벤트</p>
-                </a>
-                <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['newsletter'] }}">
-                  <span class="dropdown-title">뉴스레터</span>
-                  <p>PyTorch 뉴스레터 구독</p>
-                </a>
-              </div>
-            </div>
-          </li>
-
-          <li>
-          <div id="resourcesDropdownButton" data-toggle="resources-dropdown" class="resources-dropdown">
-              <a class="with-down-arrow">
-                튜토리얼
-              </a>
-              <div class="resources-dropdown-menu">
                 <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['tutorials'] }}">
-                  <span class="dropdown-title">튜토리얼 홈</span>
-                  <p>PyTorch 한국어 튜토리얼 홈페이지</p>
+                  <span class="dropdown-title">Tutorials</span>
+                  <p>Whats new in PyTorch tutorials</p>
                 </a>
                 <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['learn_basics'] }}">
-                  <span class="dropdown-title">기초 배우기</span>
-                  <p>PyTorch 개념과 모듈에 익숙해지기</p>
+                  <span class="dropdown-title">Learn the Basics</span>
+                  <p>Familiarize yourself with PyTorch concepts and modules</p>
                 </a>
                 <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['recipes'] }}">
-                  <span class="dropdown-title">PyTorch 레시피</span>
-                  <p>간단하고 바로 배포 가능한 PyTorch 코드 예제</p>
+                  <span class="dropdown-title">PyTorch Recipes</span>
+                  <p>Bite-size, ready-to-deploy PyTorch code examples</p>
                 </a>
                 <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['youtube_intro_series'] }}">
-                  <span class="dropdown-title">PyTorch 소개 - YouTube 시리즈</span>
-                  <p>YouTube 튜토리얼 시리즈로 PyTorch 기초 마스터하기</p>
+                  <span class="dropdown-title">Intro to PyTorch - YouTube Series</span>
+                  <p>Master PyTorch basics with our engaging YouTube tutorial series</p>
                 </a>
               </div>
             </div>
+          </li>
+
+          <li>
+          <div id="resourcesDropdownButton" data-toggle="resources-dropdown" class="resources-dropdown">
+              <a class="with-down-arrow">
+                Ecosystem
+              </a>
+              <div class="resources-dropdown-menu">
+                <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['ecosystem'] }}">
+                  <span class="dropdown-title">Tools</span>
+                  <p>Learn about the tools and frameworks in the PyTorch Ecosystem</p>
+                </a>
+                <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['community_module'] }}">
+                  <span class=dropdown-title>Community</span>
+                  <p>Join the PyTorch developer community to contribute, learn, and get your questions answered</p>
+                </a>
+                <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['forums'] }}" target="_blank">
+                  <span class=dropdown-title>Forums</span>
+                  <p>A place to discuss PyTorch code, issues, install, research</p>
+                </a>
+                <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['resources'] }}">
+                  <span class=dropdown-title>Developer Resources</span>
+                  <p>Find resources and get questions answered</p>
+                </a>
+                <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['contributor_awards_2024'] }}">
+                  <span class="dropdown-title">Contributor Awards - 2024</span>
+                  <p>Award winners announced at this year's PyTorch Conference</p>
+                </a>
+              </div>
+            </div>
+          </li>
+
+          <li>
+          <div id="resourcesDropdownButton" data-toggle="resources-dropdown" class="resources-dropdown">
+              <a class="with-down-arrow">
+                Edge
+              </a>
+              <div class="resources-dropdown-menu">
+                <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['edge'] }}">
+                  <span class="dropdown-title">About PyTorch Edge</span>
+                  <p>Build innovative and privacy-aware AI experiences for edge devices</p>
+                </a>
+                <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['executorch'] }}">
+                  <span class="dropdown-title">ExecuTorch</span>
+                  <p>End-to-end solution for enabling on-device inference capabilities across mobile and edge devices</p>
+                </a>
+                <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['executorch_docs'] }}">
+                  <span class="dropdown-title">ExecuTorch Docs</span>
+                </a>
+              </div>
+            </div>  
           </li>
 
           <li class="main-menu-item">
             <div id="resourcesDropdownButton" data-toggle="resources-dropdown" class="resources-dropdown">
               <a class="with-down-arrow">
-                허브
+                Docs
               </a>
               <div class="resources-dropdown-menu">
-                <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['hub'] }}">
-                  <span class="dropdown-title">PyTorch Hub</span>
-                  <p>PyTorch Hub에서 사전 학습된 모델 탐색 및 다운로드</p>
-                </a>
                 <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['docs'] }}">
-                  <span class="dropdown-title">PyTorch 문서</span>
-                  <p>PyTorch 공식 문서 및 API 레퍼런스</p>
+                  <span class="dropdown-title">PyTorch</span>
+                  <p>Explore the documentation for comprehensive guidance on how to use PyTorch</p>
+                </a>
+                <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['docs_domains'] }}">
+                  <span class="dropdown-title">PyTorch Domains</span>
+                  <p>Read the PyTorch Domains documentation to learn more about domain-specific libraries</p>
                 </a>
               </div>
             </div>
@@ -210,59 +202,68 @@
           <li>
             <div id="resourcesDropdownButton" data-toggle="resources-dropdown" class="resources-dropdown">
               <a class="with-down-arrow">
-                커뮤니티
+                Blogs & News 
               </a>
               <div class="resources-dropdown-menu">
-                <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['community'] }}">
-                  <span class="dropdown-title">커뮤니티 홈</span>
-                  <p>PyTorch 한국어 커뮤니티 홈페이지</p>
+                <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['blog'] }}">
+                  <span class="dropdown-title">PyTorch Blog</span>
+                  <p>Catch up on the latest technical news and happenings</p>
                 </a>
-                <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['forums'] }}" target="_blank">
-                  <span class="dropdown-title">포럼</span>
-                  <p>PyTorch 한국어 커뮤니티 포럼</p>
+                 <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['community_blog'] }}">
+                  <span class="dropdown-title">Community Blog</span>
+                  <p>Stories from the PyTorch ecosystem</p>
                 </a>
-                <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['discuss'] }}">
-                  <span class="dropdown-title">Discuss</span>
-                  <p>PyTorch 영어 커뮤니티 포럼</p>
+                <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['videos'] }}">
+                  <span class="dropdown-title">Videos</span>
+                  <p>Learn about the latest PyTorch tutorials, new, and more </p>
+                <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['community-stories'] }}">
+                  <span class="dropdown-title">Community Stories</span>
+                  <p>Learn how our community solves real, everyday machine learning problems with PyTorch</p>
+                </a>
+                <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['events'] }}">
+                  <span class="dropdown-title">Events</span>
+                  <p>Find events, webinars, and podcasts</p>
+                </a>
+                <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['newsletter'] }}">
+                  <span class="dropdown-title">Newsletter</span>
+                  <p>Stay up-to-date with the latest updates</p>
                 </a>
             </div>
           </li>
 
-          <!-- 사용하지 않는 메뉴 (PyTorch.kr 메뉴 구조에 맞게 주석 처리)
           <li>
             <div id="resourcesDropdownButton" data-toggle="resources-dropdown" class="resources-dropdown">
               <a class="with-down-arrow">
-                소개
+                About
               </a>
               <div class="resources-dropdown-menu">
                 <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['foundation'] }}">
-                  <span class="dropdown-title">PyTorch 재단</span>
-                  <p>PyTorch 재단에 대해 자세히 알아보기</p>
+                  <span class="dropdown-title">PyTorch Foundation</span>
+                  <p>Learn more about the PyTorch Foundation</p>
                 </a>
                 <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['governing_board'] }}">
-                  <span class="dropdown-title">이사회</span>
+                  <span class="dropdown-title">Governing Board</span>
                 </a>
                 <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['credits'] }}">
-                  <span class="dropdown-title">클라우드 크레딧 프로그램</span>
+                  <span class="dropdown-title">Cloud Credit Program</span>
                 </a>
                 <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['tac'] }}">
-                  <span class="dropdown-title">기술 자문 위원회</span>
+                  <span class="dropdown-title">Technical Advisory Council</span>
                 </a>
                 <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['staff'] }}">
-                  <span class="dropdown-title">스태프</span>
+                  <span class="dropdown-title">Staff</span>
                 </a>
                 <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['contact_us'] }}">
-                  <span class="dropdown-title">연락처</span>
+                  <span class="dropdown-title">Contact Us</span>
                 </a>
               </div>
             </div>
           </li>
-          -->
 
           <li class="main-menu-item">
             <div class="no-dropdown">
               <a href="{{ theme_variables.external_urls['join_form'] }}" data-cta="join">
-                멤버 가입
+                Become a Member
               </a>
             </div>
           </li>
@@ -272,7 +273,7 @@
              </a>
            </div>
           </li>
-          <!--- TODO: This block adds the search icon to the nav bar. We will enable it later.
+          <!--- TODO: This block adds the search icon to the nav bar. We will enable it later. 
           <li>
             <div class="main-menu-item">
              <a href="{{ theme_variables.external_urls['github'] }}" class="search-icon">
@@ -295,7 +296,7 @@
     {# SIDE NAV, TOGGLES ON MOBILE #}
 
     <div class="table-of-contents-link-wrapper">
-      <span>목차</span>
+      <span>Table of Contents</span>
       <a href="#" class="toggle-table-of-contents" data-behavior="toggle-table-of-contents"></a>
     </div>
 
@@ -351,7 +352,7 @@
         </div>
 
         <div class="pytorch-shortcuts-wrapper" id="pytorch-shortcuts-wrapper">
-          바로가기
+          Shortcuts
         </div>
       </div>
 
@@ -387,11 +388,11 @@
           <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ theme_analytics_id }}"
           height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <!-- End Google Tag Manager (noscript) -->
-          {%- if theme_style_external_links is defined and theme_style_external_links|tobool %}
+          {% if theme_style_external_links|tobool %}
           <div class="rst-content style-external-links">
           {% else %}
           <div class="rst-content">
-          {%- endif %}
+          {% endif %}
             <div role="main" class="main-content" itemscope="itemscope" itemtype="http://schema.org/Article">
             {%- block document %}
              <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
@@ -454,11 +455,7 @@
 
   <script type="text/javascript">
       jQuery(function () {
-          {%- if theme_sticky_navigation is defined %}
           SphinxRtdTheme.Navigation.enable({{ 'true' if theme_sticky_navigation|tobool else 'false' }});
-          {%- else %}
-          SphinxRtdTheme.Navigation.enable(false);
-          {%- endif %}
       });
   </script>
 
@@ -470,21 +467,21 @@
     <div class="container">
       <div class="row">
         <div class="col-md-4 text-center">
-          <h2>문서</h2>
-          <p>PyTorch에 대한 포괄적인 개발자 문서에 접근하세요</p>
-          <a class="with-right-arrow" href="{{ theme_variables.external_urls['docs'] }}">문서 보기</a>
+          <h2>Docs</h2>
+          <p>Access comprehensive developer documentation for PyTorch</p>
+          <a class="with-right-arrow" href="{{ theme_variables.external_urls['docs'] }}">View Docs</a>
         </div>
 
         <div class="col-md-4 text-center">
-          <h2>튜토리얼</h2>
-          <p>초급자와 고급 개발자를 위한 심도 있는 튜토리얼을 확인하세요</p>
-          <a class="with-right-arrow" href="{{ theme_variables.external_urls['tutorials'] }}">튜토리얼 보기</a>
+          <h2>Tutorials</h2>
+          <p>Get in-depth tutorials for beginners and advanced developers</p>
+          <a class="with-right-arrow" href="{{ theme_variables.external_urls['tutorials'] }}">View Tutorials</a>
         </div>
 
         <div class="col-md-4 text-center">
-          <h2>리소스</h2>
-          <p>개발 리소스를 찾고 질문에 대한 답을 얻으세요</p>
-          <a class="with-right-arrow" href="{{ theme_variables.external_urls['resources'] }}">리소스 보기</a>
+          <h2>Resources</h2>
+          <p>Find development resources and get your questions answered</p>
+          <a class="with-right-arrow" href="{{ theme_variables.external_urls['resources'] }}">View Resources</a>
         </div>
       </div>
     </div>
@@ -526,7 +523,7 @@
             <li><a href="{{ theme_variables.external_urls['twitter'] }}" target="_blank">Twitter</a></li>
             <li><a href="{{ theme_variables.external_urls['youtube'] }}" target="_blank">YouTube</a></li>
             <li><a href="{{ theme_variables.external_urls['linkedIn'] }}" target="_blank">LinkedIn</a></li>
-          </ul>
+          </ul>  
           </div>
 
         <div class="footer-links-col">
@@ -539,7 +536,7 @@
           </ul>
          </div>
         </div>
-
+        
         <div class="privacy-policy">
           <ul>
             <li class="privacy-policy-links"><a href="https://www.linuxfoundation.org/terms/" target="_blank">Terms</a></li>
@@ -578,111 +575,129 @@
       <div class="main-menu">
         <ul>
            <li class="resources-mobile-menu-title">
-             <a>시작하기</a>
+             <a>Learn</a>
            </li>
            <ul class="resources-mobile-menu-items">
              <li>
-               <a href="{{ theme_variables.external_urls['get_started'] }}">시작하기</a>
+               <a href="{{ theme_variables.external_urls['get_started'] }}">Get Started</a>
              </li>
              <li>
-               <a href="{{ theme_variables.external_urls['previous_pytorch_versions'] }}">이전 버전</a>
+               <a href="{{ theme_variables.external_urls['tutorials'] }}">Tutorials</a>
+             </li>
+             <li>
+               <a href="{{ theme_variables.external_urls['learn_basics'] }}">Learn the Basics</a>
+             </li>
+             <li>
+               <a href="{{ theme_variables.external_urls['recipes'] }}">PyTorch Recipes</a>
+             </li>
+             <li>
+               <a href="{{ theme_variables.external_urls['youtube_intro_series'] }}">Introduction to PyTorch - YouTube Series</a>
              </li>
            </ul>
            <li class="resources-mobile-menu-title">
-             <a>블로그</a>
+             <a>Ecosystem</a>
            </li>
            <ul class="resources-mobile-menu-items">
              <li>
-               <a href="{{ theme_variables.external_urls['ecosystem'] }}">도구</a>
+               <a href="{{ theme_variables.external_urls['ecosystem'] }}">Tools</a>
              </li>
              <li>
-               <a href="{{ theme_variables.external_urls['community'] }}">커뮤니티</a>
+               <a href="{{ theme_variables.external_urls['community'] }}">Community</a>
              </li>
              <li>
-               <a href="{{ theme_variables.external_urls['forums'] }}">포럼</a>
+               <a href="{{ theme_variables.external_urls['forums'] }}">Forums</a>
              </li>
              <li>
-               <a href="{{ theme_variables.external_urls['resources'] }}">개발자 리소스</a>
+               <a href="{{ theme_variables.external_urls['resources'] }}">Developer Resources</a>
              </li>
              <li>
-               <a href="{{ theme_variables.external_urls['contributor_awards_2024'] }}">기여자 어워드 - 2024</a>
-             </li>
-           </ul>
-
-           <li class="resources-mobile-menu-title">
-             <a>튜토리얼</a>
-           </li>
-
-           <ul class="resources-mobile-menu-items">
-             <li>
-               <a href="{{ theme_variables.external_urls['tutorials'] }}">튜토리얼 홈</a>
-             </li>
-             <li>
-               <a href="{{ theme_variables.external_urls['learn_basics'] }}">기초 배우기</a>
-             </li>
-             <li>
-               <a href="{{ theme_variables.external_urls['recipes'] }}">PyTorch 레시피</a>
-             </li>
-             <li>
-               <a href="{{ theme_variables.external_urls['youtube_intro_series'] }}">PyTorch 소개 - YouTube 시리즈</a>
+               <a href="{{ theme_variables.external_urls['contributor_awards_2023'] }}">Contributor Awards - 2024</a>
              </li>
            </ul>
 
            <li class="resources-mobile-menu-title">
-             <a>허브</a>
+             <a>Edge</a>
+           </li>
+
+           <ul class="resources-mobile-menu-items">
+             <li>
+               <a href="{{ theme_variables.external_urls['edge'] }}">About PyTorch Edge</a>
+             </li>
+             
+             <li>
+               <a href="{{ theme_variables.external_urls['executorch'] }}">ExecuTorch</a>
+             </li>
+             <li>
+               <a href="{{ theme_variables.external_urls['executorch_docs'] }}">ExecuTorch Documentation</a>
+             </li>
+           </ul>
+
+           <li class="resources-mobile-menu-title">
+             <a>Docs</a>
            </li>
 
            <ul class="resources-mobile-menu-items">
             <li>
-              <a href="{{ theme_variables.external_urls['hub'] }}">PyTorch Hub</a>
+              <a href="{{ theme_variables.external_urls['docs'] }}">PyTorch</a>
             </li>
-            <li>
-              <a href="{{ theme_variables.external_urls['docs'] }}">PyTorch 문서</a>
-            </li>
-           </ul>
 
-          <li class="resources-mobile-menu-title">
-            <a>커뮤니티</a>
-          </li>
-
-           <ul class="resources-mobile-menu-items">
             <li>
-              <a href="{{ theme_variables.external_urls['community'] }}">커뮤니티 홈</a>
-            </li>
-            <li>
-              <a href="{{ theme_variables.external_urls['forums'] }}" target="_blank">포럼</a>
-            </li>
-            <li>
-              <a href="{{ theme_variables.external_urls['discuss'] }}">Discuss</a>
+              <a href="{{ theme_variables.external_urls['docs_domains'] }}">PyTorch Domains</a>
             </li>
           </ul>
 
-          <!-- 사용하지 않는 메뉴 (PyTorch.kr 메뉴 구조에 맞게 주석 처리)
           <li class="resources-mobile-menu-title">
-            <a>소개</a>
+            <a>Blog & News</a>
+          </li>
+            
+           <ul class="resources-mobile-menu-items">
+            <li>
+              <a href="{{ theme_variables.external_urls['blog'] }}">PyTorch Blog</a>
+            </li>
+            <li>
+              <a href="{{ theme_variables.external_urls['community_blog'] }}">Community Blog</a>
+            </li>
+
+            <li>
+              <a href="{{ theme_variables.external_urls['videos'] }}">Videos</a>
+            </li>
+
+            <li>
+              <a href="{{ theme_variables.external_urls['community-stories'] }}">Community Stories</a>
+            </li>
+            <li>
+              <a href="{{ theme_variables.external_urls['events'] }}">Events</a>
+            </li>
+            <li>
+               <a href="{{ theme_variables.external_urls['newsletter'] }}">Newsletter</a>
+             </li>
+          </ul>
+          
+          <li class="resources-mobile-menu-title">
+            <a>About</a>
           </li>
 
           <ul class="resources-mobile-menu-items">
             <li>
-              <a href="{{ theme_variables.external_urls['foundation'] }}">PyTorch 재단</a>
+              <a href="{{ theme_variables.external_urls['foundation'] }}">PyTorch Foundation</a>
             </li>
             <li>
-              <a href="{{ theme_variables.external_urls['governing_board'] }}">이사회</a>
+              <a href="{{ theme_variables.external_urls['governing_board'] }}">Governing Board</a>
             </li>
             <li>
-               <a href="{{ theme_variables.external_urls['credits'] }}">클라우드 크레딧 프로그램</a>
+               <a href="{{ theme_variables.external_urls['credits'] }}">Cloud Credit Program</a>
             </li>
             <li>
-               <a href="{{ theme_variables.external_urls['tac'] }}">기술 자문 위원회</a>
+               <a href="{{ theme_variables.external_urls['tac'] }}">Technical Advisory Council</a>
             </li>
             <li>
-               <a href="{{ theme_variables.external_urls['staff'] }}">스태프</a>
+               <a href="{{ theme_variables.external_urls['staff'] }}">Staff</a>
             </li>
             <li>
-               <a href="{{ theme_variables.external_urls['contact_us'] }}">연락처</a>
+               <a href="{{ theme_variables.external_urls['contact_us'] }}">Contact Us</a>
             </li>
           </ul>
-          -->
+        </ul>
       </div>
     </div>
   </div>

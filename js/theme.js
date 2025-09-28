@@ -250,10 +250,19 @@ if (downloadNote.length >= 1) {
     var tutorialUrlArray = $("#tutorial-type").text().split('/');
         tutorialUrlArray[0] = tutorialUrlArray[0] + "_source"
 
-    var githubLink = "https://github.com/PyTorchKorea/tutorials-kr/blob/master/" + tutorialUrlArray.join("/") + ".py",
-        notebookLink = $(".reference.download")[1].href,
-        notebookDownloadPath = notebookLink.split('_downloads')[1],
-        colabLink = "https://colab.research.google.com/github/PyTorchKorea/tutorials-kr/blob/master/docs/_downloads" + notebookDownloadPath;
+    var githubLink = "https://github.com/pytorch/tutorials/blob/master/" + tutorialUrlArray.join("/") + ".py";
+    var notebookLink = "";
+    // some versions of sphinx gallery have different orders of the download
+    // links so we need to check if the link ends with .ipynb to find the
+    // correct one
+    for (var i = 0; i < $(".reference.download").length; i++) {
+        notebookLink = $(".reference.download")[i].href;
+        if (notebookLink.endsWith(".ipynb")) {
+            break;
+        }
+    }
+    var notebookDownloadPath = notebookLink.split('_downloads')[1];
+    var colabLink = "https://colab.research.google.com/github/pytorch/tutorials/blob/gh-pages/_downloads" + notebookDownloadPath;
 
     $("#google-colab-link").wrap("<a href=" + colabLink + " data-behavior='call-to-action-event' data-response='Run in Google Colab' target='_blank'/>");
     $("#download-notebook-link").wrap("<a href=" + notebookLink + " data-behavior='call-to-action-event' data-response='Download Notebook'/>");
@@ -262,29 +271,13 @@ if (downloadNote.length >= 1) {
     $(".pytorch-call-to-action-links").hide();
 }
 
-// this code adds link to the original tutorial document from pytorch.org
-$(document).ready(function() {
-    // only work for tutorial html pages
-    if (document.URL.includes(".html")) {
-        var orgUrl    = ['https:', '', 'pytorch.org', 'tutorials'].concat(document.URL.split("/").slice(3)).join('/');
-        var orgLink   = '<a style="font-size:0.5em;padding-left:0.375em;" target="_blank" href="'+ orgUrl +'">[원문 보기]</a>';
-
-        // add pytorch.org tutorial link inside h1 tag
-        $("div.rst-content h1 a").before(orgLink);
-
-        // modify pytorch.org tutorial link at bottom
-        $("#orgTutorialLink").attr("href", orgUrl);
-    }
-});
-
 //This code handles the Expand/Hide toggle for the Docs/Tutorials left nav items
 
 $(document).ready(function() {
   var caption = "#pytorch-left-menu p.caption";
   var collapseAdded = $(this).not("checked");
   $(caption).each(function () {
-    // var menuName = this.innerText.replace(/[^\w\s]/gi, "").trim();
-    var menuName = $(this).find("span")[0].innerText.trim(); // fix for Korean translated menuName
+    var menuName = this.innerText.replace(/[^\w\s]/gi, "").trim();
     $(this).find("span").addClass("checked");
     if (collapsedSections.includes(menuName) == true && collapseAdded && sessionStorage.getItem(menuName) !== "expand" || sessionStorage.getItem(menuName) == "collapse") {
       $(this.firstChild).after("<span class='expand-menu'>[ + ]</span>");
@@ -299,8 +292,7 @@ $(document).ready(function() {
   $(".expand-menu").on("click", function () {
     $(this).prev(".hide-menu").toggle();
     $(this).parent().next("ul").toggle();
-    // var menuName = $(this).parent().text().replace(/[^\w\s]/gi, "").trim();
-    var menuName = $(this).parent().find("span")[0].innerText.trim(); // fix for Korean translated menuName
+    var menuName = $(this).parent().text().replace(/[^\w\s]/gi, "").trim();
     if (sessionStorage.getItem(menuName) == "collapse") {
       sessionStorage.removeItem(menuName);
     }
@@ -311,8 +303,7 @@ $(document).ready(function() {
   $(".hide-menu").on("click", function () {
     $(this).next(".expand-menu").toggle();
     $(this).parent().next("ul").toggle();
-    // var menuName = $(this).parent().text().replace(/[^\w\s]/gi, "").trim();
-    var menuName = $(this).parent().find("span")[0].innerText.trim(); // fix for Korean translated menuName
+    var menuName = $(this).parent().text().replace(/[^\w\s]/gi, "").trim();
     if (sessionStorage.getItem(menuName) == "expand") {
       sessionStorage.removeItem(menuName);
     }
@@ -407,3 +398,42 @@ $(".stars-outer > i").on("click", function() {
         });
     });
 })
+
+$("#pytorch-side-scroll-right li a").on("click", function (e) {
+  var href = $(this).attr("href");
+  $('html, body').stop().animate({
+    scrollTop: $(href).offset().top - 100
+  }, 850);
+  e.preventDefault;
+});
+
+var lastId,
+  topMenu = $("#pytorch-side-scroll-right"),
+  topMenuHeight = topMenu.outerHeight() + 1,
+  // All sidenav items
+  menuItems = topMenu.find("a"),
+  // Anchors for menu items
+  scrollItems = menuItems.map(function () {
+    var item = $(this).attr("href");
+    if (item.length) {
+      return item;
+    }
+  });
+
+$(window).scroll(function () {
+  var fromTop = $(this).scrollTop() + topMenuHeight;
+  var article = ".section";
+
+  $(article).each(function (i) {
+    var offsetScroll = $(this).offset().top - $(window).scrollTop();
+    if (
+      offsetScroll <= topMenuHeight + 200 &&
+      offsetScroll >= topMenuHeight - 200 &&
+      scrollItems[i] == "#" + $(this).attr("id") &&
+      $(".hidden:visible")
+    ) {
+      $(menuItems).removeClass("side-scroll-highlight");
+      $(menuItems[i]).addClass("side-scroll-highlight");
+    }
+  });
+});

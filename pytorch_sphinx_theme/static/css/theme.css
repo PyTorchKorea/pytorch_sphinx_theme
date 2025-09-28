@@ -368,7 +368,7 @@ h1, h2, h3, h4, h5, h6,
 }
 
 h1, .h1 {
-  font-size: 2.0rem;
+  font-size: 2.5rem;
 }
 
 h2, .h2 {
@@ -9942,7 +9942,7 @@ pre {
 
 .mobile-main-menu-links-container ul.resources-mobile-menu-items li a {
   font-size: 18px;
-  line-height: 34px;
+  line-height: 34px;    
 }
 
 .site-footer {
@@ -9999,7 +9999,7 @@ pre {
 
 .site-footer .privacy-policy-links {
     background: #000000;
-    display: flex;
+    display: flex; 
     padding-top: 1rem;
     padding-right: 1rem;
     display: inline-flex;

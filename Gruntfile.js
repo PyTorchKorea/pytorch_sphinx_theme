@@ -127,7 +127,7 @@ module.exports = function(grunt) {
     },
     exec: {
       build_sphinx: {
-        cmd: 'sphinx-build -D plot_gallery=0 ' + PROJECT_DIR + ' -b html ./docs/build'
+        cmd: 'sphinx-build ' + PROJECT_DIR + ' docs/build'
       }
     },
     clean: {
