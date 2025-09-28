@@ -2,15 +2,16 @@ from setuptools import setup  # noqa: F401
 
 setup(
     name="pytorch_sphinx_theme2",
-    description="PyTorch Sphinx Theme",
-    author="PyTorch Team",
+    description="PyTorchKR Sphinx Theme",
+    author="PyTorch Team & PyTorchKR",
     author_email="svekars@meta.com",
-    url="https://github.com/pytorch/pytorch_sphinx_theme",
+    url="https://github.com/PyTorchKorea/pytorch_sphinx_theme",
     license="MIT",
     version="0.1.0",
     install_requires=[
         "pydata-sphinx-theme==0.15.4",
         "sphinx>=5.3.0,<=7.2.6",
+        "setuptools>=64",
     ],
     packages=["pytorch_sphinx_theme2"],
     include_package_data=True,
@@ -34,5 +35,5 @@ setup(
             "pytorch_sphinx_theme2 = pytorch_sphinx_theme2",
         ],
     },
-    python_requires=">=3.7",
+    python_requires=">=3.9",
 )
