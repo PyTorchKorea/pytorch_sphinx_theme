@@ -1,4 +1,4 @@
-/* PyTorch top nav bar */
+/* PyTorch top nav bar (exactly from pytorch.kr) */
 @use 'variables' as *;
 
 .container-fluid,
@@ -9,27 +9,45 @@
 }
 
 .header-holder {
-  height: var(--header-height);
-  display: flex;
+  height: $mobile_header_height;
   align-items: center;
-  position: sticky;
+  background-color: var(--header-background, #{$white});
+  border-bottom: 1px solid #e2e2e2;
+
+  @include full-nav-menu-desktop {
+    height: $desktop_header_height;
+  }
+  display: flex;
   left: 0;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
+  position: fixed;
   right: 0;
   top: 0;
   width: 100%;
-  z-index: 10001;
-  background-color: var(--header-background);
-  border-bottom: 1px solid #333;
+  z-index: 9999;
 
-  @media screen and (min-width: 1200px) {
-    height: var(--header-height-desktop);
+  &.blog-header,
+  &.blog-detail-header,
+  &.resources-header,
+  &.get-started-header,
+  &.features-header,
+  &.ecosystem-header,
+  &.hub-header,
+  &.coc-header,
+  &.announcement-header,
+  &.mobile-header {
+    background-color: $white;
+    border-bottom: 1px solid #e2e2e2;
   }
-}
 
-@media (min-width: 1200px) {
-  .header-container-wrapper {
-    max-width: 1140px;
+  &.domains-header {
+    background-color: #545454;
+    border-bottom: 1px solid #e2e2e2;
+
+    .main-menu ul li a {
+      color: $white;
+    }
   }
 }
 
@@ -37,165 +55,109 @@
   position: relative;
   display: flex;
   align-items: center;
+  @include clearfix;
 
-  &:before, &:after {
-    content: "";
-    display: table;
-  }
-
-  &:after {
-    clear: both;
+  @include full-nav-menu-desktop {
+    display: block;
   }
 }
 
 .header-logo {
-  height: 23px;
-  width: 93px;
-  background-image: url("../img/logo.svg");
+  height: rem(40px);
+  width: rem(200px);
+  background-image: var(--header-logo-url, url("../img/logo-ko-dark.svg"));
   background-repeat: no-repeat;
-  background-size: 93px 23px;
+  background-size: rem(200px) rem(52px);
   display: block;
   float: left;
-  z-index: 10;
 
-  @media screen and (min-width: 959px) {
-    background-size: auto 24px;
+  @include full-nav-menu-desktop {
+    background-size: rem(200px) rem(52px);
     position: absolute;
-    height: 24px;
-    width: 103px;
+    height: rem(52px);
+    width: rem(200px);
+    top: rem(-10px);
     float: none;
   }
 }
 
 .main-menu-open-button {
-  // Replace background-image with FontAwesome icon
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 25px;
-  height: 17px;
+  background-image: url("../img/icon-menu-dots.svg");
+  background-position: center center;
+  background-size: rem(25px) rem(7px);
+  background-repeat: no-repeat;
+  width: rem(25px);
+  height: rem(7px);
   position: absolute;
   right: 0;
-  top: 4px;
-
-  i {
-    font-size: 1.5rem;
-    color: $muted-text;
-  }
-
-  @media screen and (min-width: 960px) {
+  top: rem(20px);
+  @include full-nav-menu-desktop {
     display: none;
   }
 }
 
-// Add this to make the close button more visible
-.main-menu-close-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 24px;
-  position: absolute;
-  right: 0;
-  width: 24px;
-  top: -4px;
-  cursor: pointer;
-
-  i {
-    font-size: 1.5rem;
-    color: $light-text;
-  }
-}
-
-
 .header-holder .main-menu {
   display: none;
 
-  @media screen and (min-width: 960px) {
+  @include full-nav-menu-desktop {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding-left: 290px;
   }
-
-  @media screen and (min-width: 1130px) {
-    padding-left: 450px;
-  }
-
 
   ul {
     display: flex;
     align-items: center;
     margin: 0;
+  }
 
-    li {
-      display: inline-block;
-      margin-right: 30px;
-      position: relative;
-      color: $light-text;
+  ul li {
+    display: inline-block;
+    margin-right: rem(40px);
+    position: relative;
 
-      &.active:after {
+    &.active {
+      &:after {
         content: "•";
-        bottom: -24px;
-        color: $light-text;
-        font-size: 1.375rem;
+        bottom: rem(-24px);
+        color: $orange;
+        font-size: rem(22px);
         left: 0;
         position: absolute;
         right: 0;
         text-align: center;
       }
 
-      &.active a {
-        color: $light-text;
-      }
-
-      &.docs-active:after {
-        content: "•";
-        bottom: -24px;
-        color: $pytorch-red;
-        font-size: 1.375rem;
-        left: -24px;
-        position: absolute;
-        right: 0;
-        text-align: center;
-      }
-
-      &:last-of-type {
-        margin-right: 0;
-        margin-left: 10px;
-      }
-
       a {
-        color: $light-text;
-        font-size: 15px;
-        letter-spacing: 0.8px;
-        line-height: 2.125rem;
-        text-align: center;
-        text-decoration: none;
-        padding: 2em 0;
+        color: $orange;
+      }
+
+      .with-down-arrow {
+        background-image: url("../img/chevron-down-orange.svg");
       }
     }
-    li.main-menu-item a.with-down-arrow span:after {
-      transform-origin: 0 0;
-      transition: transform .35s cubic-bezier(.52,.01,.16,1);
-      bottom: -3px;
-      -webkit-transition: -webkit-transform .3s ease-out, border-color .3s ease-out;
-      transition: transform .3s ease-out, border-color .3s ease-out;
-      position: absolute;
-      display: block;
-      bottom: 2px;
-      left: 0;
-      width: 100%;
-      -ms-transform: scaleX(0);
-      -webkit-transform: scaleX(0);
-      transform: scaleX(0);
-      border-top: 2px solid #ee4c2c;
-      content: "";
-      padding-bottom: inherit;
+
+    &.resources-active:after {
+      left: rem(-27px);
     }
-    li.main-menu-item:hover a.with-down-arrow span:after {
-      backface-visibility: hidden;
-      -webkit-transform: scaleX(1);
-      transform: scaleX(1);
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+
+  ul li a {
+    color: var(--header-text-color, #{$not_quite_black});
+    font-size: 1.3rem;
+    letter-spacing: 0;
+    line-height: rem(34px);
+    text-align: center;
+    text-decoration: none;
+
+    @include full-nav-menu-desktop {
+      &:hover {
+        color: $orange;
+      }
     }
   }
 }
@@ -206,7 +168,7 @@
   display: none;
 
   &.open {
-    background-color: $dark-text;
+    background-color: $slate;
     display: block;
     height: 100%;
     left: 0;
@@ -217,7 +179,7 @@
     right: 0;
     top: 0;
     width: 100%;
-    z-index: 10000;
+    z-index: 99999;
 
     ul {
       list-style-type: none;
@@ -226,14 +188,14 @@
       li {
         a, .resources-mobile-menu-title {
           font-size: 2rem;
-          color: $light-text;
+          color: $white;
           letter-spacing: 0;
           line-height: 4rem;
           text-decoration: none;
         }
 
         &.active a {
-          color: $pytorch-red;
+          color: $orange;
         }
       }
     }
@@ -246,7 +208,7 @@
   .container-fluid {
     align-items: center;
     display: flex;
-    height: 68px;
+    height: rem(68px);
     position: relative;
 
     &:before, &:after {
@@ -270,7 +232,7 @@
   align-items: center;
   padding-left: 2.8125rem;
   height: 90vh;
-  margin-top: -25px;
+  margin-top: rem(-25px);
   padding-top: 50%;
   overflow-y: scroll;
 
@@ -279,18 +241,19 @@
   }
 
   ul.resources-mobile-menu-items li {
-    padding-left: 15px;
+    padding-left: rem(15px);
 
     a {
-      font-size: 18px;
-      line-height: 34px;
+      font-size: rem(18px);
+      line-height: rem(34px);
     }
   }
 }
 
 .header-holder .main-menu ul li a.nav-dropdown-item:hover,
 .header-holder .main-menu ul li a.nav-dropdown-item.active {
-  color: $pytorch-red !important;
+  color: $white !important;
+  background-color: $orange !important;
 }
 
 .header-holder .main-menu ul li .no-dropdown a:before {
@@ -303,20 +266,81 @@
   transition: opacity .45s cubic-bezier(0.25,1,0.33,1), transform .45s cubic-bezier(0.25,1,0.33,1), border-color .45s cubic-bezier(0.25,1,0.33,1), color .45s cubic-bezier(0.25,1,0.33,1), background-color .45s cubic-bezier(0.25,1,0.33,1), box-shadow .45s cubic-bezier(0.25,1,0.33,1);
   display: block;
   position: absolute;
-  left: -11px;
-  padding-bottom: 10px;
-  transform: translateY(-7px);
+  left: rem(-11px);
+  padding-bottom: rem(10px);
+  transform: translateY(rem(-7px));
   width: 170%;
-  height: 26px;
+  height: rem(26px);
   content: " ";
   z-index: -1;
   transition: opacity 0.2s;
   transform: translateY(-50%);
   top: 50%;
   background-color: $pytorch-red !important;
-  padding: 17px;
+  padding: rem(17px);
 }
 
 .header-holder .main-menu ul li .no-dropdown {
-  margin-left: 5px;
+  margin-left: rem(5px);
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: rem(200px);
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  z-index: 1000;
+  margin-top: rem(2px);
+  opacity: 0;
+  transform: translateY(rem(-10px));
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.learn-dropdown, .docs-dropdown, .community-dropdown {
+  position: relative;
+
+  &:hover .dropdown-menu {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nav-dropdown-item {
+  display: block;
+  padding: rem(8px) rem(16px);
+  color: $dark-text !important;
+  text-decoration: none;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.25s ease, color 0.25s ease;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    background-color: #f8f9fa;
+    color: $pytorch-red !important;
+  }
+
+  .dropdown-title {
+    font-size: rem(14px);
+    font-weight: normal;
+  }
+}
+
+.with-down-arrow:after {
+  content: "▼";
+  font-size: rem(10px);
+  margin-left: rem(6px);
+  color: $not_quite_black;
+
+  &:hover {
+    color: $orange;
+  }
 }

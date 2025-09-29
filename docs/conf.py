@@ -4,7 +4,7 @@ import sys
 sys.path.insert(0, os.path.abspath(".."))
 
 import pytorch_sphinx_theme2
-import torch
+# import torch
 
 html_theme = "pytorch_sphinx_theme2"
 html_theme_path = [pytorch_sphinx_theme2.get_html_theme_path()]
@@ -28,9 +28,9 @@ extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.viewcode",
     "sphinxcontrib.httpdomain",
-    "sphinx_gallery.gen_gallery",
+    # "sphinx_gallery.gen_gallery",
     "sphinx_design",
-    "myst_nb",
+    # "myst_nb",
 ]
 
 print(
@@ -46,7 +46,8 @@ sphinx_gallery_conf = {
 }
 
 # pytorch_project = "tutorials"
-torch_version = str(torch.__version__)
+# torch_version = str(torch.__version__)
+torch_version = "2.0.0"  # Mock version for theme testing
 version = "main (" + torch_version + " )"
 # The full version, including alpha/beta/rc tags.
 release = "main"

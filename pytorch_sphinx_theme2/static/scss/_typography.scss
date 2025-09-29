@@ -1,7 +1,56 @@
-// Typography styles
+// Typography styles (exactly from pytorch.kr)
 @use 'variables' as *;
 
-// Headings
+* {
+  font-family: Nanum Gothic, FreightSans, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-weight: 400; /* normal - https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight#Common_weight_name_mapping */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Nanum Gothic;
+}
+
+p {
+  margin-bottom: 1.25rem;
+}
+
+a, em, i, b, strong, u, span {
+  font-size: inherit;
+}
+
+a:link,
+a:visited,
+a:hover {
+  text-decoration: none;
+  color: $orange;
+}
+
+p {
+  @include default_link_styles;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+  font-size: 12px;
+
+  @include desktop {
+    font-size: 14px;
+  }
+}
+
+body {
+  font-family: Nanum Gothic, FreightSans, Helvetica Neue, Helvetica, Arial, sans-serif;
+  @include desktop {
+    margin: 0 0 $desktop_footer_height;
+  }
+
+  &.no-scroll {
+    height: 100%;
+    overflow: hidden;
+  }
+}
+
 article {
   h1, .h1 {
     word-wrap: break-word !important;
@@ -38,57 +87,37 @@ article {
   padding-bottom: 0px;
 }
 
-// Footer typography
-.site-footer {
-  p {
-    color: $light-text;
-  }
-  
-  ul {
-    li {
-      font-size: 1.125rem;
-      line-height: 2rem;
-      color: #A0A0A1;
-      padding-bottom: 0.375rem;
-      
-      &.list-title {
-        padding-bottom: 0.75rem;
-        color: $light-text;
-      }
-    }
-  }
-}
 
 // Docs, tutorials, resources section typography
 .docs-tutorials-resources {
   p {
     color: $light-text;
-    font-size: 1rem;
-    line-height: 1.5rem;
+    font-size: 0.8rem;
+    line-height: 1.2rem;
     letter-spacing: 0.22px;
     margin-bottom: 0;
-    
+
     @media screen and (min-width: 768px) {
-      margin-bottom: 1.25rem;
+      margin-bottom: 0.75rem;
     }
   }
   
   h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
     letter-spacing: -0.25px;
     text-transform: none;
     margin-bottom: 0.25rem;
     color: $light-text;
-    
+
     @media screen and (min-width: 768px) {
-      margin-bottom: 1.25rem;
+      margin-bottom: 1rem;
     }
   }
   
   a {
-    font-size: 1.125rem;
+    font-size: 0.875rem;
     color: $pytorch-red;
-    
+
     &:hover {
       color: $light-text;
     }
@@ -151,12 +180,37 @@ article {
   font-weight: 700;
 }
 
-// Button typography
+// Button typography (aligned with pytorch.kr)
 .btn,
 a.btn {
+  border-radius: 0;
+  border: none;
+  background-color: $light_grey;
+  color: $dark_grey;
   font-weight: 400;
   position: relative;
   letter-spacing: 0.25px;
+  transition: all 0.3s ease;
+
+  &.btn-lg {
+    font-size: 1.125rem;
+    padding-top: 8px;
+  }
+
+  &.btn-white {
+    background-color: $white;
+  }
+
+  &.btn-orange {
+    background-color: $orange;
+    color: $white;
+
+    &:hover {
+      background-color: darken($orange, 10%);
+    }
+  }
+
+  @include animated_border_hover_state;
 }
 
 .feedback-btn {
