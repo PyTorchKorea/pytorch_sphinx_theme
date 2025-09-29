@@ -6,7 +6,7 @@
 
 html[data-theme=light] {
   --header-background: #ffffff;
-  --header-logo-url: url("../img/logo-ko-dark.svg");
+  --header-logo-url: url("../img/logo-ko.svg");
   --footer-logo-url: url("../img/logo-ko-square-dark.svg");
   --header-text-color: #262626;
   --pst-color-primary: #ee4c2c;
@@ -23,7 +23,7 @@ html[data-theme=light] {
 
 html[data-theme=dark] {
   --header-background: #262626;
-  --header-logo-url: url("../img/logo-ko.svg");
+  --header-logo-url: url("../img/logo-ko-dark.svg");
   --footer-logo-url: url("../img/logo-ko-square.svg");
   --header-text-color: #ffffff;
   --pst-color-primary: #ee4c2c;
@@ -696,17 +696,17 @@ div.cell > div.cell_input {
   background-image: var(--footer-logo-url, url("../img/logo-ko-square-dark.svg"));
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 160px 160px;
+  background-size: 200px 200px;
   display: block;
-  height: 200px;
-  width: 160px;
+  height: 240px;
+  width: 200px;
   margin-bottom: 2.8125rem;
 }
 @media screen and (min-width: 768px) {
   .footer-logo {
-    background-size: 160px 160px;
-    height: 200px;
-    width: 160px;
+    background-size: 200px 200px;
+    height: 240px;
+    width: 200px;
     margin-bottom: 0;
   }
 }
@@ -1585,10 +1585,16 @@ html {
 
 body {
   font-family: Nanum Gothic, FreightSans, Helvetica Neue, Helvetica, Arial, sans-serif;
+  padding-top: var(--header-height);
 }
 @media screen and (min-width: 768px) {
   body {
     margin: 0 0 350px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  body {
+    padding-top: var(--header-height-desktop);
   }
 }
 body.no-scroll {
