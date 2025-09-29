@@ -1,5 +1,6 @@
 // Typography styles (exactly from pytorch.kr)
 @use 'variables' as *;
+@use 'sass:color';
 
 * {
   font-family: Nanum Gothic, FreightSans, Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -206,7 +207,7 @@ a.btn {
     color: $white;
 
     &:hover {
-      background-color: darken($orange, 10%);
+      background-color: color.scale($orange, $lightness: -18%);
     }
   }
 

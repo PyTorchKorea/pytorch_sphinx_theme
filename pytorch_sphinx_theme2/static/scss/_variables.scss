@@ -43,8 +43,10 @@ $font-family-headings: 'Nanum Gothic';
 $font-family-monospace: 'Nanum Gothic Coding', 'IBMPlexMono', Monaco, 'Courier New', monospace;
 
 // PyTorchKR rem function (exactly from pytorch.kr)
+@use "sass:math";
+
 @function rem($px) {
-  @return ($px / 16px) * 1rem;
+  @return math.div($px, 16px) * 1rem;
 }
 
 // PyTorchKR mixins (aligned with pytorch.kr)
@@ -136,7 +138,7 @@ $font-family-monospace: 'Nanum Gothic Coding', 'IBMPlexMono', Monaco, 'Courier N
 // Theme color variables (PyTorchKR style)
 html[data-theme="light"] {
   --header-background: #{$white};
-  --header-logo-url: url('../img/logo-ko-dark.svg');
+  --header-logo-url: url('../img/logo-ko.svg');
   --footer-logo-url: url('../img/logo-ko-square-dark.svg');
   --header-text-color: #{$not_quite_black};
   --pst-color-primary: #{$orange};
@@ -153,8 +155,8 @@ html[data-theme="light"] {
 
 html[data-theme="dark"] {
   --header-background: #{$slate};
-  --header-logo-url: url('../img/logo-ko.svg');
-  --footer-logo-url: url('../img/logo-ko-square.svg');
+  --header-logo-url: url('../img/logo-ko-dark.svg');
+  --footer-logo-url: url('../img/logo-ko-square-dark.svg');
   --header-text-color: #{$white};
   --pst-color-primary: #{$orange};
   --pst-color-secondary: #{$orange};

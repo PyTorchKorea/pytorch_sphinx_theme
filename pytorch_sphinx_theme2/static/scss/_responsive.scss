@@ -38,13 +38,6 @@
     left: 30px;
   }
 
-  .footer-logo {
-    background-size: 29px 36px;
-    height: 36px;
-    margin-bottom: 0;
-    width: 29px;
-  }
-
   .footer-links-wrapper {
     flex-wrap: initial;
     justify-content: flex-end;
@@ -96,7 +89,7 @@
 }
 
 // Mobile styles
-@media (max-width: 1200px) {
+@media (max-width: 1100px) {
   .bd-header {
     top: var(--header-height) !important;
   }
@@ -105,12 +98,6 @@
     top: 50px !important;
     overflow-y: scroll !important;
     overflow-x: scroll !important;
-  }
-}
-
-@media (max-width: 960px) {
-  .bd-header {
-    top: var(--header-height) !important;
   }
 }
 

@@ -104,21 +104,14 @@
 }
 
 .footer-logo {
-  background-image: var(--footer-logo-url, url("../img/logo-ko-square-dark.svg"));
+  background-image: url("../img/logo-ko-square-dark.svg");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 160px 160px;
+  background-size: 100px 100px;
   display: block;
-  height: 200px;
-  width: 160px;
-  margin-bottom: rem(45px);
-
-  @include desktop {
-    background-size: 160px 160px;
-    height: 200px;
-    width: 160px;
-    margin-bottom: 0;
-  }
+  height: 130px;
+  width: 100px;
+  margin-bottom: 0;
 }
 
 .footer-links-wrapper {
